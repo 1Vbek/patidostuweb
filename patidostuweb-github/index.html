@@ -1,0 +1,1705 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <!-- ============================================================
+       PatiDostuWeb.com — Landing Page
+       Stack: HTML5 + Tailwind CSS (CDN) + Vanilla JS
+       Yazarı: AI CRO/UX Expert | Vercel/Netlify deploy-ready
+  ============================================================ -->
+  <meta charset="UTF-8" />
+  <!-- ── Viewport: Mobile-first, iOS zoom engeli, tam genişlik ── -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+  <!-- ── SEO Meta ── -->
+  <title>PatiDostuWeb — Kliniğinizi Dijitalleştirin | 48 Saatte Web Sitesi</title>
+  <meta name="description" content="Veteriner klinikleri için 48 saatte profesyonel web sitesi. Her hizmet bedelinin %15'i Ahbap aracılığıyla sokak hayvanlarına bağışlanır. Hemen başvurun." />
+  <meta name="keywords" content="veteriner web sitesi, klinik web sitesi, veteriner dijital, patidostuweb, ahbap bağış" />
+  <meta name="author" content="PatiDostuWeb — Emir Sirkeci & Bekir Kılıç" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://patidostuweb.com/" />
+
+  <!-- ── Open Graph (Facebook / WhatsApp / LinkedIn önizleme) ── -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://patidostuweb.com/" />
+  <meta property="og:title"       content="PatiDostuWeb — 48 Saatte Veteriner Web Sitesi" />
+  <meta property="og:description" content="Kliniğinizi dijitalleştirin, sokaktaki dostlarımıza umut olun. Her hizmetin %15'i Ahbap bağışı." />
+  <meta property="og:image"       content="https://patidostuweb.com/og-image.png" />
+  <meta property="og:locale"      content="tr_TR" />
+  <meta property="og:site_name"   content="PatiDostuWeb" />
+
+  <!-- ── Twitter Card ── -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:url"         content="https://patidostuweb.com/" />
+  <meta name="twitter:title"       content="PatiDostuWeb — 48 Saatte Veteriner Web Sitesi" />
+  <meta name="twitter:description" content="Kliniğinizi dijitalleştirin, sokaktaki dostlarımıza umut olun. Her hizmetin %15'i Ahbap bağışı." />
+  <meta name="twitter:image"       content="https://patidostuweb.com/og-image.png" />
+
+  <!-- ── PWA & iOS / Android ── -->
+  <meta name="theme-color"                 content="#1F2937" />
+  <meta name="mobile-web-app-capable"      content="yes" />
+  <meta name="apple-mobile-web-app-capable"       content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title"  content="PatiDostuWeb" />
+  <meta name="msapplication-TileColor"     content="#F97316" />
+  <meta name="format-detection"            content="telephone=no" />
+
+  <!-- ── Favicon placeholder (SVG inline) ── -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐾</text></svg>" />
+
+  <!-- ── Google Fonts: Inter ── -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- ── Tailwind CSS CDN ── -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- ── Tailwind Config: Custom Theme ── -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            orange:   { DEFAULT: '#F97316', light: '#FFF7ED', dark: '#EA580C' },
+            carbon:   { DEFAULT: '#1F2937', light: '#374151' },
+            cream:    { DEFAULT: '#FAFAF8', warm: '#F5F0EB' },
+            green:    { trust: '#10B981' },
+          },
+          fontFamily: {
+            sans: ['Inter', 'SF Pro Display', 'system-ui', 'sans-serif'],
+          },
+          boxShadow: {
+            'card':     '0 4px 24px 0 rgba(31,41,55,0.08)',
+            'card-lg':  '0 12px 48px 0 rgba(31,41,55,0.14)',
+            'orange':   '0 8px 32px 0 rgba(249,115,22,0.30)',
+            'orange-lg':'0 16px 48px 0 rgba(249,115,22,0.40)',
+          },
+          animation: {
+            'float':      'float 3s ease-in-out infinite',
+            'pulse-soft': 'pulseSoft 2s ease-in-out infinite',
+            'slide-up':   'slideUp 0.6s cubic-bezier(0.16,1,0.3,1) forwards',
+            'fade-in':    'fadeIn 0.5s ease forwards',
+          },
+          keyframes: {
+            float:      { '0%,100%':{ transform:'translateY(0)' }, '50%':{ transform:'translateY(-8px)' } },
+            pulseSoft:  { '0%,100%':{ opacity:1 }, '50%':{ opacity:0.75 } },
+            slideUp:    { from:{ opacity:0, transform:'translateY(32px)' }, to:{ opacity:1, transform:'translateY(0)' } },
+            fadeIn:     { from:{ opacity:0 }, to:{ opacity:1 } },
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- ── Global Custom CSS ── -->
+  <style>
+    /* ── Base ── */
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      /* Yatay scroll önleme — tüm cihazlar */
+      overflow-x: hidden;
+      /* iOS momentum scroll */
+      -webkit-overflow-scrolling: touch;
+    }
+
+    body {
+      font-family: 'Inter', 'SF Pro Display', system-ui, sans-serif;
+      background-color: #FAFAF8;
+      color: #1F2937;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      /* Yatay taşma engeli */
+      overflow-x: hidden;
+      /* Metin boyutu iOS auto-adjust engeli */
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    /* ── Tüm touch hedeflerine minimum 44px (Apple HIG) ── */
+    a, button, [role="button"], input[type="submit"] {
+      touch-action: manipulation;
+    }
+
+    /* ── Prefers reduced motion desteği (erişilebilirlik) ── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; }
+    }
+
+    /* ── Scroll-reveal base state ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1),
+                  transform 0.7s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* Stagger delays */
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.2s; }
+    .reveal-d3 { transition-delay: 0.3s; }
+    .reveal-d4 { transition-delay: 0.4s; }
+    .reveal-d5 { transition-delay: 0.5s; }
+
+    /* ── Gradient hero background ── */
+    .hero-bg {
+      background: linear-gradient(135deg, #1F2937 0%, #111827 60%, #1C1917 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 60% 40%, rgba(249,115,22,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      width: 600px; height: 600px;
+      top: -200px; right: -200px;
+      background: radial-gradient(circle, rgba(249,115,22,0.12) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    /* ── Animated gradient orbs in hero ── */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      animation: float 5s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    /* ── Orange CTA button ── */
+    .btn-orange {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #F97316, #EA580C);
+      color: #fff;
+      font-weight: 700;
+      border-radius: 14px;
+      padding: 16px 32px;
+      font-size: 1rem;
+      letter-spacing: -0.01em;
+      box-shadow: 0 8px 32px rgba(249,115,22,0.35);
+      transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1),
+                  box-shadow 0.2s ease,
+                  filter 0.2s ease;
+      cursor: pointer;
+      border: none;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-orange::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .btn-orange:hover::before { opacity: 1; }
+    .btn-orange:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 16px 48px rgba(249,115,22,0.45);
+    }
+    .btn-orange:active {
+      transform: translateY(0) scale(0.98);
+    }
+
+    /* ── Ghost button ── */
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: #fff;
+      font-weight: 600;
+      border-radius: 14px;
+      padding: 15px 28px;
+      font-size: 1rem;
+      border: 2px solid rgba(255,255,255,0.25);
+      transition: border-color 0.2s, background 0.2s, transform 0.2s;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .btn-ghost:hover {
+      border-color: rgba(255,255,255,0.6);
+      background: rgba(255,255,255,0.06);
+      transform: translateY(-2px);
+    }
+
+    /* ── Problem card ── */
+    .problem-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 32px 28px;
+      box-shadow: 0 4px 24px rgba(31,41,55,0.07);
+      border: 1px solid rgba(31,41,55,0.06);
+      transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1),
+                  box-shadow 0.3s ease;
+    }
+    .problem-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 48px rgba(31,41,55,0.12);
+    }
+
+    /* ── Feature card ── */
+    .feature-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 28px 24px;
+      box-shadow: 0 4px 20px rgba(31,41,55,0.07);
+      border: 1px solid rgba(31,41,55,0.06);
+      transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1),
+                  box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #F97316, #EA580C);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+    .feature-card:hover::before { transform: scaleX(1); }
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(31,41,55,0.13);
+    }
+
+    /* ── Pricing card ── */
+    .pricing-card {
+      background: #fff;
+      border-radius: 24px;
+      padding: 40px 32px;
+      box-shadow: 0 4px 24px rgba(31,41,55,0.08);
+      border: 2px solid rgba(31,41,55,0.07);
+      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1),
+                  box-shadow 0.35s ease,
+                  border-color 0.25s ease;
+      position: relative;
+    }
+    .pricing-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 24px 64px rgba(31,41,55,0.15);
+    }
+    .pricing-card.popular {
+      border-color: #F97316;
+      background: linear-gradient(160deg, #fff 0%, #FFF7ED 100%);
+    }
+    .pricing-card.popular:hover {
+      box-shadow: 0 24px 64px rgba(249,115,22,0.22);
+    }
+
+    /* ── Badge ── */
+    .badge-popular {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, #F97316, #EA580C);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 999px;
+      box-shadow: 0 4px 16px rgba(249,115,22,0.35);
+    }
+
+    /* ── Trust badge ── */
+    .trust-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(249,115,22,0.08);
+      border: 1.5px solid rgba(249,115,22,0.2);
+      border-radius: 999px;
+      padding: 10px 20px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #EA580C;
+      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+    }
+    .trust-badge:hover {
+      background: rgba(249,115,22,0.14);
+      border-color: rgba(249,115,22,0.4);
+      transform: translateY(-2px);
+    }
+
+    /* ── Checkmark list ── */
+    .check-item::before {
+      content: '✓';
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px; height: 22px;
+      background: #FFF7ED;
+      color: #F97316;
+      border-radius: 50%;
+      font-size: 0.7rem;
+      font-weight: 900;
+      flex-shrink: 0;
+      margin-right: 12px;
+    }
+
+    /* ── Sticky nav shadow on scroll ── */
+    .nav-scrolled {
+      box-shadow: 0 4px 24px rgba(31,41,55,0.10);
+      background: rgba(250,250,248,0.97) !important;
+    }
+
+    /* ── Ahbap accent section ── */
+    .ahbap-section {
+      background: linear-gradient(135deg, #1F2937 0%, #111827 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .ahbap-section::before {
+      content: '';
+      position: absolute;
+      width: 500px; height: 500px;
+      bottom: -200px; left: -100px;
+      background: radial-gradient(circle, rgba(249,115,22,0.14) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    /* ── Stat counter card ── */
+    .stat-card {
+      border-radius: 20px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 28px 24px;
+      text-align: center;
+      backdrop-filter: blur(12px);
+      transition: background 0.3s, border-color 0.3s, transform 0.3s;
+    }
+    .stat-card:hover {
+      background: rgba(255,255,255,0.09);
+      border-color: rgba(249,115,22,0.3);
+      transform: translateY(-4px);
+    }
+
+    /* ── Form input styles ── */
+    .form-input {
+      width: 100%;
+      background: #fff;
+      border: 2px solid rgba(31,41,55,0.1);
+      border-radius: 14px;
+      padding: 16px 20px;
+      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      color: #1F2937;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+    .form-input:focus {
+      border-color: #F97316;
+      box-shadow: 0 0 0 4px rgba(249,115,22,0.12);
+    }
+    .form-input::placeholder { color: #9CA3AF; }
+    .form-select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%239CA3AF'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      background-size: 20px;
+    }
+
+    /* ── WhatsApp float ── */
+    .wa-float {
+      position: fixed;
+      /* iOS safe area inset: iPhone X+ çentik/home bar desteği */
+      bottom: calc(28px + env(safe-area-inset-bottom, 0px));
+      right: 28px;
+      z-index: 999;
+      width: 60px; height: 60px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 8px 32px rgba(37,211,102,0.40);
+      transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s;
+      text-decoration: none;
+      animation: float 3s ease-in-out infinite;
+      /* Küçük ekranlarda biraz küçült */
+    }
+    @media (max-width: 375px) {
+      .wa-float { width: 52px; height: 52px; right: 16px; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); }
+      .wa-float svg { width: 24px; height: 24px; }
+    }
+    .wa-float:hover {
+      transform: scale(1.15) translateY(-4px);
+      box-shadow: 0 16px 48px rgba(37,211,102,0.55);
+    }
+    .wa-float svg { width: 28px; height: 28px; fill: #fff; }
+
+    /* ── Section divider ── */
+    .section-divider {
+      width: 60px; height: 4px;
+      background: linear-gradient(90deg, #F97316, #EA580C);
+      border-radius: 999px;
+      margin: 0 auto 24px;
+    }
+
+    /* ── Progress dots (hero) ── */
+    @keyframes bounce-dot {
+      0%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-8px); }
+    }
+
+    /* ── Mobile menu ── */
+    #mobile-menu {
+      transition: max-height 0.4s cubic-bezier(0.16,1,0.3,1), opacity 0.3s ease;
+      max-height: 0; opacity: 0; overflow: hidden;
+    }
+    /* 6 link × ~48px + padding = 380px yeterli */
+    #mobile-menu.open { max-height: 420px; opacity: 1; }
+
+    /* ── Success message ── */
+    #form-success {
+      display: none;
+      animation: slideUp 0.5s cubic-bezier(0.16,1,0.3,1) forwards;
+    }
+
+    /* ── Smooth section separator ── */
+    .wave-top {
+      position: absolute; top: -1px; left: 0; width: 100%;
+      overflow: hidden; line-height: 0;
+    }
+    .wave-top svg { display: block; width: 100%; height: 60px; }
+
+    /* ════════════════════════════════════════════════════
+       📱 RESPONSIVE BREAKPOINT OVERRIDES
+       (Tailwind dışına taşan edge case'ler)
+    ════════════════════════════════════════════════════ */
+
+    /* iPhone SE / çok küçük ekran (≤ 375px) */
+    @media (max-width: 375px) {
+      .hero-bg { padding-top: 4.5rem; padding-bottom: 5rem; }
+      /* Büyük başlık font boyutunu kır */
+      h1 { font-size: 2rem !important; line-height: 1.1 !important; }
+      h2 { font-size: 1.75rem !important; }
+      /* CTA butonlarını tam genişlik yap */
+      .btn-orange, .btn-ghost { width: 100%; justify-content: center; }
+      /* Hero trust bar satır satır */
+      .hero-trust-bar { flex-direction: column; gap: 10px; }
+      /* Fiyat kartı padding azalt */
+      .pricing-card { padding: 28px 20px; }
+    }
+
+    /* Tablet (768px – 1023px) için özel grid ayarı */
+    @media (min-width: 768px) and (max-width: 1023px) {
+      .stat-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* Sticky navbar iOS safe area üstten */
+    @supports (padding-top: env(safe-area-inset-top)) {
+      #navbar {
+        padding-top: env(safe-area-inset-top, 0px);
+      }
+    }
+
+    /* Fiyat kartları: hover sadece dokunmayan cihazlarda */
+    @media (hover: none) {
+      .pricing-card:hover,
+      .problem-card:hover,
+      .feature-card:hover,
+      .stat-card:hover {
+        transform: none;
+      }
+    }
+
+    /* ── Print media: animasyonları kapat ── */
+    @media print {
+      .wa-float, #navbar, .orb { display: none !important; }
+      .reveal { opacity: 1 !important; transform: none !important; }
+      body { background: #fff !important; color: #000 !important; }
+    }
+  </style>
+</head>
+<body class="bg-cream font-sans">
+
+  <!-- ============================================================
+       🔴 WHATSAPP FLOAT BUTTON
+  ============================================================ -->
+  <a href="https://wa.me/905XXXXXXXXX?text=Merhaba,%20web%20sitesi%20hakkında%20bilgi%20almak%20istiyorum."
+     target="_blank" rel="noopener" class="wa-float" aria-label="WhatsApp ile iletişim">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </a>
+
+  <!-- ============================================================
+       🧭 STICKY NAVIGATION
+  ============================================================ -->
+  <header id="navbar"
+    class="fixed top-0 left-0 right-0 z-50 bg-cream/95 backdrop-blur-md transition-all duration-300">
+    <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 sm:h-18">
+
+        <!-- Logo -->
+        <a href="#" class="flex items-center gap-2.5 group">
+          <div class="w-9 h-9 bg-gradient-to-br from-orange to-orange-dark rounded-xl flex items-center justify-center shadow-orange transition-transform duration-300 group-hover:scale-110">
+            <span class="text-white text-lg">🐾</span>
+          </div>
+          <div class="leading-tight">
+            <span class="block font-black text-carbon text-sm tracking-tight">PatiDostu</span>
+            <span class="block font-medium text-carbon/40 text-[10px] tracking-wider uppercase">Web</span>
+          </div>
+        </a>
+
+        <!-- Desktop Nav Links -->
+        <div class="hidden md:flex items-center gap-7">
+          <a href="#problem" class="text-sm font-medium text-carbon/70 hover:text-carbon transition-colors duration-200">Sorun</a>
+          <a href="#cozum" class="text-sm font-medium text-carbon/70 hover:text-carbon transition-colors duration-200">Çözüm</a>
+          <a href="#ahbap" class="text-sm font-medium text-carbon/70 hover:text-carbon transition-colors duration-200">Bağış</a>
+          <a href="#fiyat" class="text-sm font-medium text-carbon/70 hover:text-carbon transition-colors duration-200">Fiyatlar</a>
+          <a href="#biz-kimiz" class="text-sm font-medium text-carbon/70 hover:text-carbon transition-colors duration-200">Biz Kimiz</a>
+        </div>
+
+        <!-- Desktop CTAs -->
+        <div class="hidden md:flex items-center gap-3">
+          <a href="#form" class="text-sm font-semibold text-carbon/70 hover:text-carbon transition-colors">Bilgi Al</a>
+          <a href="#form" class="btn-orange text-sm px-5 py-2.5 rounded-xl">
+            <span>Hemen Başla</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Mobile hamburger -->
+        <button id="menu-btn" class="md:hidden p-2 rounded-xl hover:bg-orange/10 transition-colors" aria-label="Menü">
+          <svg id="menu-icon-open" class="w-6 h-6 text-carbon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+          <svg id="menu-icon-close" class="w-6 h-6 text-carbon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile menu dropdown -->
+      <div id="mobile-menu" class="md:hidden border-t border-carbon/10">
+        <div class="py-4 space-y-1">
+          <a href="#problem" class="mobile-link block px-4 py-3 text-sm font-medium text-carbon/80 hover:text-carbon hover:bg-orange/5 rounded-xl transition-all">Sorun Nedir?</a>
+          <a href="#cozum" class="mobile-link block px-4 py-3 text-sm font-medium text-carbon/80 hover:text-carbon hover:bg-orange/5 rounded-xl transition-all">Çözümümüz</a>
+          <a href="#ahbap" class="mobile-link block px-4 py-3 text-sm font-medium text-carbon/80 hover:text-carbon hover:bg-orange/5 rounded-xl transition-all">Ahbap Bağışı</a>
+          <a href="#fiyat" class="mobile-link block px-4 py-3 text-sm font-medium text-carbon/80 hover:text-carbon hover:bg-orange/5 rounded-xl transition-all">Fiyatlar</a>
+          <a href="#biz-kimiz" class="mobile-link block px-4 py-3 text-sm font-medium text-carbon/80 hover:text-carbon hover:bg-orange/5 rounded-xl transition-all">Biz Kimiz</a>
+          <div class="pt-2 px-4">
+            <a href="#form" class="btn-orange w-full justify-center text-sm mobile-link">
+              Hemen Başla →
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ============================================================
+       🦸 1. HERO SECTION — Duygusal Bağ & Değer Önerisi
+  ============================================================ -->
+  <section class="hero-bg min-h-screen flex items-center pt-16 pb-24 relative">
+
+    <!-- Decorative orbs -->
+    <div class="orb w-72 h-72 bg-orange/20 top-20 left-10 opacity-60" style="animation-delay:0s"></div>
+    <div class="orb w-48 h-48 bg-orange/10 bottom-20 right-20 opacity-40" style="animation-delay:1.5s"></div>
+    <div class="orb w-32 h-32 bg-white/5 top-1/2 left-1/2 opacity-30" style="animation-delay:2.5s"></div>
+
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="max-w-4xl mx-auto text-center">
+
+        <!-- Trust pill badge -->
+        <div class="reveal inline-flex items-center gap-2 bg-white/10 backdrop-blur border border-white/15 rounded-full px-5 py-2.5 mb-8 text-sm text-white/80 font-medium">
+          <span class="w-2 h-2 bg-green-trust rounded-full animate-pulse-soft inline-block"></span>
+          <span>48 saat teslimat · Türkiye'nin veteriner kliniklerine özel</span>
+        </div>
+
+        <!-- Main headline -->
+        <h1 class="reveal reveal-d1 text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-white leading-[1.07] tracking-tight mb-6">
+          Kliniğinizi
+          <span class="relative inline-block">
+            <span class="text-orange">Dijitalleştirin,</span>
+            <svg class="absolute -bottom-2 left-0 w-full" height="8" viewBox="0 0 300 8" fill="none">
+              <path d="M0 4 Q75 0 150 4 Q225 8 300 4" stroke="#F97316" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.6"/>
+            </svg>
+          </span>
+          <br class="hidden sm:block"/>
+          Sokaktaki Dostlarımıza
+          <br class="hidden sm:block"/>
+          <span class="text-orange">Umut Olun.</span>
+        </h1>
+
+        <!-- Sub-headline -->
+        <p class="reveal reveal-d2 text-lg sm:text-xl text-white/65 max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
+          <strong class="text-white/90">48 saatte</strong> profesyonel web siteniz hazır.
+          Her hizmet bedelinin <strong class="text-orange">%15'i</strong> kliniğiniz adına
+          <strong class="text-white/90">Ahbap</strong> aracılığıyla sokak hayvanları için bağışlanır.
+        </p>
+
+        <!-- CTA buttons -->
+        <div class="reveal reveal-d3 flex flex-col sm:flex-row gap-4 justify-center items-center mb-14">
+          <a href="#form" class="btn-orange text-base px-8 py-4 w-full sm:w-auto justify-center">
+            <span>🚀 Hemen Dijitalleşin</span>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+            </svg>
+          </a>
+          <a href="#fiyat" class="btn-ghost text-base px-8 py-4 w-full sm:w-auto justify-center">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <span>Fiyatları Gör</span>
+          </a>
+        </div>
+
+        <!-- Social proof micro stats -->
+        <div class="hero-trust-bar reveal reveal-d4 flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10">
+          <div class="flex items-center gap-3">
+            <div class="flex -space-x-2">
+              <div class="w-8 h-8 rounded-full bg-gradient-to-br from-orange-300 to-orange border-2 border-white/20 flex items-center justify-center text-xs">🐕</div>
+              <div class="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 border-2 border-white/20 flex items-center justify-center text-xs">🐈</div>
+              <div class="w-8 h-8 rounded-full bg-gradient-to-br from-green-400 to-green-600 border-2 border-white/20 flex items-center justify-center text-xs">🏥</div>
+            </div>
+            <span class="text-white/60 text-sm font-medium">50+ klinike hizmet verdik</span>
+          </div>
+          <div class="hidden sm:block w-px h-6 bg-white/20"></div>
+          <div class="flex items-center gap-2 text-white/60 text-sm font-medium">
+            <svg class="w-4 h-4 text-green-trust" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+            </svg>
+            <span>Ahbap ortaklı bağış sistemi</span>
+          </div>
+          <div class="hidden sm:block w-px h-6 bg-white/20"></div>
+          <div class="flex items-center gap-2 text-white/60 text-sm font-medium">
+            <svg class="w-4 h-4 text-orange" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"/>
+            </svg>
+            <span>48 saat garanti</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-float">
+      <span class="text-white/40 text-xs font-medium tracking-widest uppercase">Keşfet</span>
+      <svg class="w-5 h-5 text-white/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       ⚠️ 2. PROBLEM SECTION — Acı Noktası
+  ============================================================ -->
+  <section id="problem" class="py-24 bg-cream">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- Section header -->
+      <div class="text-center mb-16">
+        <div class="section-divider reveal"></div>
+        <p class="reveal text-orange font-bold text-sm tracking-widest uppercase mb-3">Sorun Nedir?</p>
+        <h2 class="reveal reveal-d1 text-3xl sm:text-4xl lg:text-5xl font-black text-carbon leading-tight tracking-tight">
+          Dijital dünyada görünmez olmak<br class="hidden sm:block"/>
+          <span class="text-orange">çok pahalıya mal oluyor.</span>
+        </h2>
+        <p class="reveal reveal-d2 text-lg text-carbon/60 max-w-2xl mx-auto mt-5 leading-relaxed">
+          Binlerce hayvan sahibi her gün internetten araştırma yapıyor. Web siteniz yoksa,
+          siz de yoksunuz.
+        </p>
+      </div>
+
+      <!-- Problem cards grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+
+        <!-- Problem 1 -->
+        <div class="problem-card reveal reveal-d1">
+          <div class="w-14 h-14 rounded-2xl bg-red-50 flex items-center justify-center mb-5 text-2xl">
+            🔍
+          </div>
+          <div class="w-10 h-1 bg-red-200 rounded-full mb-4"></div>
+          <h3 class="text-lg font-bold text-carbon mb-3 leading-snug">
+            İnternette bulunamayan klinikler güven kaybediyor
+          </h3>
+          <p class="text-carbon/60 text-sm leading-relaxed">
+            Hayvan sahiplerinin <strong class="text-carbon/80">%84'ü</strong> veteriner seçimini
+            online araştırmayla başlatıyor. Web siteniz yoksa, rakipleriniz sizi geçiyor.
+          </p>
+        </div>
+
+        <!-- Problem 2 -->
+        <div class="problem-card reveal reveal-d2">
+          <div class="w-14 h-14 rounded-2xl bg-orange-light flex items-center justify-center mb-5 text-2xl">
+            🏆
+          </div>
+          <div class="w-10 h-1 bg-orange/30 rounded-full mb-4"></div>
+          <h3 class="text-lg font-bold text-carbon mb-3 leading-snug">
+            Dijital dünyada yer almamak prestij kaybıdır
+          </h3>
+          <p class="text-carbon/60 text-sm leading-relaxed">
+            Müşteriler sizi Google'da bulamıyorsa, profesyonelliğiniz sorgulanıyor.
+            Dijital varlık artık bir <strong class="text-carbon/80">zorunluluk</strong>.
+          </p>
+        </div>
+      </div>
+
+      <!-- Bottom callout -->
+      <div class="reveal mt-10 text-center">
+        <div class="inline-flex items-center gap-3 bg-orange/8 border border-orange/20 rounded-2xl px-7 py-4">
+          <span class="text-2xl">💡</span>
+          <p class="text-carbon/80 font-semibold text-sm sm:text-base">
+            Güzel haber: Tüm bu sorunları <span class="text-orange font-bold">48 saatte</span> çözüyoruz.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       ✅ 3. ÇÖZÜM SECTION — Relief & Features
+  ============================================================ -->
+  <section id="cozum" class="py-24 bg-carbon relative overflow-hidden">
+
+    <!-- Background decorations -->
+    <div class="absolute inset-0 pointer-events-none">
+      <div class="absolute top-0 right-0 w-96 h-96 bg-orange/5 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-0 left-0 w-80 h-80 bg-orange/5 rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+      <!-- Section header -->
+      <div class="text-center mb-16">
+        <div class="section-divider reveal"></div>
+        <p class="reveal text-orange font-bold text-sm tracking-widest uppercase mb-3">Çözümümüz</p>
+        <h2 class="reveal reveal-d1 text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight tracking-tight">
+          Teknikle Değil,
+          <span class="text-orange">Tedaviyle İlgilenin.</span>
+        </h2>
+        <p class="reveal reveal-d2 text-lg text-white/50 max-w-2xl mx-auto mt-5 leading-relaxed">
+          Tüm teknik detayları biz hallediyoruz. Siz yalnızca minik dostlarınızla ilgilenin.
+        </p>
+      </div>
+
+      <!-- Feature grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-16">
+
+        <!-- Feature 1 -->
+        <div class="feature-card reveal reveal-d1" style="background:#1a2333; border-color:rgba(255,255,255,0.07);">
+          <div class="w-12 h-12 rounded-xl bg-orange/15 flex items-center justify-center mb-4 text-xl">⚡</div>
+          <h3 class="font-bold text-white text-base mb-2">48 Saatte Teslimat</h3>
+          <p class="text-white/45 text-sm leading-relaxed">Siparişinizden 48 saat sonra profesyonel web siteniz yayında.</p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="feature-card reveal reveal-d2" style="background:#1a2333; border-color:rgba(255,255,255,0.07);">
+          <div class="w-12 h-12 rounded-xl bg-orange/15 flex items-center justify-center mb-4 text-xl">📱</div>
+          <h3 class="font-bold text-white text-base mb-2">Mobil Uyumluluk</h3>
+          <p class="text-white/45 text-sm leading-relaxed">Tüm cihazlarda kusursuz görünen, hızlı yüklenen responsive tasarım.</p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="feature-card reveal reveal-d3" style="background:#1a2333; border-color:rgba(255,255,255,0.07);">
+          <div class="w-12 h-12 rounded-xl bg-orange/15 flex items-center justify-center mb-4 text-xl">🔎</div>
+          <h3 class="font-bold text-white text-base mb-2">SEO Uyumlu</h3>
+          <p class="text-white/45 text-sm leading-relaxed">Google'da ilk sıralara çıkmanızı sağlayan teknik SEO optimizasyonu.</p>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="feature-card reveal reveal-d4" style="background:#1a2333; border-color:rgba(255,255,255,0.07);">
+          <div class="w-12 h-12 rounded-xl bg-orange/15 flex items-center justify-center mb-4 text-xl">🛠️</div>
+          <h3 class="font-bold text-white text-base mb-2">Sıfır Teknik Stres</h3>
+          <p class="text-white/45 text-sm leading-relaxed">Domain, hosting, bakım — her şey bizden. Siz hiçbir şeyle uğraşmazsınız.</p>
+        </div>
+      </div>
+
+      <!-- Process timeline -->
+      <div class="reveal bg-white/5 border border-white/10 rounded-3xl p-8 sm:p-10">
+        <h3 class="text-white font-bold text-xl mb-8 text-center">Nasıl Çalışır?</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
+          <div class="text-center">
+            <div class="w-12 h-12 rounded-full bg-orange/20 border-2 border-orange/40 flex items-center justify-center mx-auto mb-4">
+              <span class="text-orange font-black text-lg">1</span>
+            </div>
+            <h4 class="text-white font-bold mb-2">Formu Doldurun</h4>
+            <p class="text-white/45 text-sm leading-relaxed">Klinik bilgilerinizi ve tercihlerinizi 2 dakikada iletin</p>
+          </div>
+          <div class="relative text-center">
+            <div class="hidden sm:block absolute top-6 left-0 right-0 h-px bg-white/10"></div>
+            <div class="w-12 h-12 rounded-full bg-orange/20 border-2 border-orange/40 flex items-center justify-center mx-auto mb-4 relative">
+              <span class="text-orange font-black text-lg">2</span>
+            </div>
+            <h4 class="text-white font-bold mb-2">Biz Tasarlıyoruz</h4>
+            <p class="text-white/45 text-sm leading-relaxed">Uzman ekibimiz 48 saat içinde sitenizi hazırlıyor</p>
+          </div>
+          <div class="relative text-center">
+            <div class="hidden sm:block absolute top-6 left-0 right-0 h-px bg-white/10"></div>
+            <div class="w-12 h-12 rounded-full bg-orange/20 border-2 border-orange/40 flex items-center justify-center mx-auto mb-4 relative">
+              <span class="text-orange font-black text-lg">3</span>
+            </div>
+            <h4 class="text-white font-bold mb-2">Yayına Çıkıyor</h4>
+            <p class="text-white/45 text-sm leading-relaxed">Onayınızla site yayında, bağış otomatik yapılıyor</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       💙 4. AHBAP / SOSYAL KANIT SECTION
+  ============================================================ -->
+  <section id="ahbap" class="ahbap-section py-24">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+        <!-- Left: Content -->
+        <div>
+          <div class="reveal inline-flex items-center gap-2 bg-orange/15 border border-orange/25 rounded-full px-4 py-2 mb-6 text-sm font-semibold text-orange">
+            <span>🤝</span> Sosyal Sorumluluk Ortaklığı
+          </div>
+          <h2 class="reveal reveal-d1 text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight tracking-tight mb-6">
+            Bir Web Sitesi Aldınız.
+            <br/>
+            <span class="text-orange">Bir Hayat</span>
+            <br/>
+            Kurtardınız.
+          </h2>
+          <p class="reveal reveal-d2 text-lg text-white/60 leading-relaxed mb-8">
+            Her web sitesi paketimizin <strong class="text-orange font-bold">%15'ini</strong>,
+            kliniğiniz adına <strong class="text-white">Ahbap Derneği</strong> aracılığıyla
+            sokak hayvanlarının veteriner masraflarına bağışlıyoruz.
+          </p>
+
+          <!-- Benefit list -->
+          <ul class="reveal reveal-d3 space-y-4 mb-8">
+            <li class="flex items-start gap-3">
+              <div class="w-6 h-6 rounded-full bg-orange/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <svg class="w-3.5 h-3.5 text-orange" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+              </div>
+              <span class="text-white/75 leading-relaxed">Bağış dekontunuz doğrudan e-posta adresinize iletilir — <strong class="text-white">şeffaf ve belgeli</strong></span>
+            </li>
+            <li class="flex items-start gap-3">
+              <div class="w-6 h-6 rounded-full bg-orange/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <svg class="w-3.5 h-3.5 text-orange" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+              </div>
+              <span class="text-white/75 leading-relaxed">Kliniğinizin web sitesinde <strong class="text-white">"Ahbap Destekli Klinik"</strong> rozetini kullanabilirsiniz</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <div class="w-6 h-6 rounded-full bg-orange/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <svg class="w-3.5 h-3.5 text-orange" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+              </div>
+              <span class="text-white/75 leading-relaxed">Hem kliniğinizin itibarı artar, hem de <strong class="text-white">hayat kurtarılır</strong></span>
+            </li>
+          </ul>
+
+          <a href="#form" class="reveal reveal-d4 btn-orange inline-flex text-base px-8 py-4">
+            <span>Bağış Yaparak Başla</span>
+            <span>❤️</span>
+          </a>
+        </div>
+
+        <!-- Right: Stats -->
+        <div class="grid grid-cols-2 gap-4">
+          <div class="stat-card reveal reveal-d1">
+            <div class="text-4xl font-black text-orange mb-1">%15</div>
+            <div class="text-white/60 text-sm font-medium leading-snug">Her hizmet bedelinden bağış</div>
+          </div>
+          <div class="stat-card reveal reveal-d2">
+            <div class="text-4xl font-black text-white mb-1">48s</div>
+            <div class="text-white/60 text-sm font-medium leading-snug">Garantili teslimat süresi</div>
+          </div>
+          <div class="stat-card reveal reveal-d3">
+            <div class="text-4xl font-black text-orange mb-1">50+</div>
+            <div class="text-white/60 text-sm font-medium leading-snug">Dijitalleşen klinik</div>
+          </div>
+          <div class="stat-card reveal reveal-d4">
+            <div class="text-4xl font-black text-white mb-1">🐾</div>
+            <div class="text-white/60 text-sm font-medium leading-snug">Ahbap derneği ortağıyız</div>
+          </div>
+
+          <!-- Ahbap logo placeholder -->
+          <div class="col-span-2 reveal">
+            <div class="bg-white/5 border border-white/10 rounded-2xl p-6 flex items-center gap-5">
+              <div class="w-14 h-14 rounded-xl bg-white/10 flex items-center justify-center text-3xl flex-shrink-0">
+                🐾
+              </div>
+              <div>
+                <div class="text-white font-bold text-base mb-1">Ahbap Derneği</div>
+                <div class="text-white/50 text-sm leading-relaxed">
+                  Türkiye'nin en şeffaf ve güvenilir hayvan koruma derneğiyle resmi ortaklığımız bulunmaktadır.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       💰 5. FİYATLANDIRMA SECTION — Karar
+  ============================================================ -->
+  <section id="fiyat" class="py-24 bg-cream-warm">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- Section header -->
+      <div class="text-center mb-16">
+        <div class="section-divider reveal"></div>
+        <p class="reveal text-orange font-bold text-sm tracking-widest uppercase mb-3">Şeffaf Fiyatlandırma</p>
+        <h2 class="reveal reveal-d1 text-3xl sm:text-4xl lg:text-5xl font-black text-carbon leading-tight tracking-tight">
+          Sürpriz yok.
+          <span class="text-orange">Her şey dahil.</span>
+        </h2>
+        <p class="reveal reveal-d2 text-lg text-carbon/60 max-w-xl mx-auto mt-5">
+          İki net paket, sıfır gizli ücret. İstediğiniz paketi seçin, gerisini biz halledelim.
+        </p>
+      </div>
+
+      <!-- Pricing cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+
+        <!-- Card 1: 1 Yıllık -->
+        <div class="pricing-card reveal reveal-d1">
+          <div class="mb-6">
+            <p class="text-carbon/50 font-semibold text-sm uppercase tracking-wider mb-1">Başlangıç</p>
+            <h3 class="text-2xl font-black text-carbon mb-1">1 Yıllık Paket</h3>
+            <div class="flex items-baseline gap-1.5">
+              <span class="text-5xl font-black text-carbon">3.500</span>
+              <span class="text-xl font-bold text-carbon/60">₺</span>
+              <span class="text-carbon/40 font-medium ml-1">/ yıl</span>
+            </div>
+            <p class="text-carbon/45 text-sm mt-2">≈ aylık <strong>292₺</strong></p>
+          </div>
+
+          <div class="h-px bg-carbon/8 mb-6"></div>
+
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-start gap-3 text-sm">
+              <svg class="w-5 h-5 text-green-trust flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span class="text-carbon/75">Profesyonel web sitesi tasarımı</span>
+            </li>
+            <li class="flex items-start gap-3 text-sm">
+              <svg class="w-5 h-5 text-green-trust flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span class="text-carbon/75">Domain + hosting (1 yıl)</span>
+            </li>
+            <li class="flex items-start gap-3 text-sm">
+              <svg class="w-5 h-5 text-green-trust flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span class="text-carbon/75">Mobil uyumlu & SEO hazır</span>
+            </li>
+            <li class="flex items-start gap-3 text-sm">
+              <svg class="w-5 h-5 text-green-trust flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span class="text-carbon/75">Google Haritalar entegrasyonu</span>
+            </li>
+            <li class="flex items-start gap-3 text-sm">
+              <svg class="w-5 h-5 text-green-trust flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span class="text-carbon/75">Ahbap bağış dekontu</span>
+            </li>
+            <li class="flex items-start gap-3 text-sm opacity-40">
+              <svg class="w-5 h-5 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+              <span>Öncelikli teknik destek</span>
+            </li>
+            <li class="flex items-start gap-3 text-sm opacity-40">
+              <svg class="w-5 h-5 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+              <span>İçerik güncelleme (2x/yıl)</span>
+            </li>
+          </ul>
+
+          <a href="#form" class="block w-full text-center py-4 px-6 rounded-2xl border-2 border-carbon/15 font-bold text-carbon hover:border-orange hover:text-orange hover:bg-orange/5 transition-all duration-200 text-sm">
+            Bu Paketi Seç
+          </a>
+        </div>
+
+        <!-- Card 2: 3 Yıllık (Popular) -->
+        <div class="pricing-card popular reveal reveal-d2 relative">
+          <!-- Popular badge -->
+          <div class="absolute -top-4 left-1/2 -translate-x-1/2">
+            <div class="badge-popular">
+              <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+              </svg>
+              En Popüler
+            </div>
+          </div>
+
+          <div class="mb-6 mt-4">
+            <p class="text-orange font-semibold text-sm uppercase tracking-wider mb-1">Önerilen</p>
+            <h3 class="text-2xl font-black text-carbon mb-1">3 Yıllık Paket</h3>
+            <div class="flex items-baseline gap-1.5">
+              <span class="text-5xl font-black text-carbon">7.500</span>
+              <span class="text-xl font-bold text-carbon/60">₺</span>
+              <span class="text-carbon/40 font-medium ml-1">/ 3 yıl</span>
+            </div>
+            <div class="flex items-center gap-2 mt-2">
+              <p class="text-carbon/45 text-sm">≈ aylık <strong>208₺</strong></p>
+              <span class="bg-green-100 text-green-700 text-xs font-bold px-2.5 py-1 rounded-full">%29 Tasarruf</span>
+            </div>
+          </div>
+
+          <div class="h-px bg-carbon/8 mb-6"></div>
+
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-start gap-3 text-sm">
+              <svg class="w-5 h-5 text-orange flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span class="text-carbon/75 font-medium">Profesyonel web sitesi tasarımı</span>
+            </li>
+            <li class="flex items-start gap-3 text-sm">
+              <svg class="w-5 h-5 text-orange flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span class="text-carbon/75 font-medium">Domain + hosting (3 yıl)</span>
+            </li>
+            <li class="flex items-start gap-3 text-sm">
+              <svg class="w-5 h-5 text-orange flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span class="text-carbon/75 font-medium">Mobil uyumlu & SEO hazır</span>
+            </li>
+            <li class="flex items-start gap-3 text-sm">
+              <svg class="w-5 h-5 text-orange flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span class="text-carbon/75 font-medium">Google Haritalar entegrasyonu</span>
+            </li>
+            <li class="flex items-start gap-3 text-sm">
+              <svg class="w-5 h-5 text-orange flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span class="text-carbon/75 font-medium">Ahbap bağış dekontu</span>
+            </li>
+            <li class="flex items-start gap-3 text-sm">
+              <svg class="w-5 h-5 text-orange flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span class="text-carbon/75 font-medium">Öncelikli teknik destek</span>
+            </li>
+            <li class="flex items-start gap-3 text-sm">
+              <svg class="w-5 h-5 text-orange flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span class="text-carbon/75 font-medium">İçerik güncelleme (2x/yıl)</span>
+            </li>
+          </ul>
+
+          <a href="#form" class="btn-orange block w-full text-center py-4 px-6 rounded-2xl text-sm font-bold">
+            Bu Paketi Seç — En İyi Değer 🏆
+          </a>
+        </div>
+      </div>
+
+      <!-- Guarantee note -->
+      <div class="reveal text-center mt-10">
+        <div class="inline-flex flex-col sm:flex-row items-center gap-3 text-carbon/50 text-sm">
+          <span class="flex items-center gap-2">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/></svg>
+            Güvenli ödeme
+          </span>
+          <span class="hidden sm:inline">·</span>
+          <span class="flex items-center gap-2">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            48 saat teslimat garantisi
+          </span>
+          <span class="hidden sm:inline">·</span>
+          <span class="flex items-center gap-2">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/></svg>
+            Bağış belgesi e-posta ile
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       📝 6. FINAL CTA & FORM SECTION
+  ============================================================ -->
+  <section id="form" class="py-24 bg-cream relative overflow-hidden">
+
+    <!-- Background decoration -->
+    <div class="absolute inset-0 pointer-events-none">
+      <div class="absolute top-10 right-10 w-80 h-80 bg-orange/6 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-10 left-10 w-64 h-64 bg-orange/4 rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+
+        <!-- Left: CTA content -->
+        <div class="lg:sticky lg:top-24">
+          <div class="section-divider reveal mb-6 ml-0"></div>
+          <h2 class="reveal text-3xl sm:text-4xl lg:text-5xl font-black text-carbon leading-tight tracking-tight mb-6">
+            Sadece
+            <span class="text-orange">48 saatte</span>
+            <br/>
+            dijitalleşmeye
+            <br/>
+            başlayın.
+          </h2>
+          <p class="reveal reveal-d1 text-lg text-carbon/60 leading-relaxed mb-8">
+            Formu doldurun, bir uzmanımız sizinle iletişime geçsin.
+            Hiçbir teknik bilgiye gerek yok.
+          </p>
+
+          <!-- Trust badges -->
+          <div class="reveal reveal-d2 flex flex-wrap gap-3 mb-10">
+            <div class="trust-badge">⚡ 48s Garanti</div>
+            <div class="trust-badge">🐾 Ahbap Ortağı</div>
+            <div class="trust-badge">🔒 Güvenli Ödeme</div>
+          </div>
+
+          <!-- Testimonial mini -->
+          <div class="reveal reveal-d3 bg-white rounded-2xl p-6 border border-carbon/8 shadow-card">
+            <div class="flex gap-1 mb-3">
+              <span class="text-orange text-lg">★★★★★</span>
+            </div>
+            <p class="text-carbon/70 text-sm leading-relaxed italic mb-4">
+              "48 saatte değil, 36 saatte teslim ettiler. Ekip çok profesyonel ve web sitemiz
+              harika görünüyor. Üstelik Ahbap'a yaptığı bağışın dekontunu da aldım!"
+            </p>
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-gradient-to-br from-orange to-orange-dark flex items-center justify-center text-white font-bold text-sm">
+                AK
+              </div>
+              <div>
+                <div class="font-semibold text-carbon text-sm">Dr. Ayşe K.</div>
+                <div class="text-carbon/45 text-xs">Veteriner Hekim, İzmir</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Form -->
+        <div class="reveal reveal-d1">
+          <div class="bg-white rounded-3xl p-8 sm:p-10 shadow-card-lg border border-carbon/6">
+
+            <!-- Form header -->
+            <div class="mb-8">
+              <h3 class="text-2xl font-black text-carbon mb-2">Ücretsiz Bilgi Alın</h3>
+              <p class="text-carbon/50 text-sm">2 dakika ayırın, 48 saatte dijitalleşin.</p>
+            </div>
+
+            <!-- The form -->
+            <form id="contact-form" class="space-y-5" novalidate>
+
+              <!-- Name -->
+              <div>
+                <label class="block text-sm font-semibold text-carbon/70 mb-2" for="name">
+                  Ad Soyad <span class="text-orange">*</span>
+                </label>
+                <input
+                  id="name" name="name" type="text"
+                  class="form-input" placeholder="Dr. Adınız Soyadınız"
+                  autocomplete="name" required />
+                <p class="error-msg text-red-500 text-xs mt-1.5 hidden" id="name-error">Lütfen adınızı girin.</p>
+              </div>
+
+              <!-- Clinic name -->
+              <div>
+                <label class="block text-sm font-semibold text-carbon/70 mb-2" for="clinic">
+                  Klinik Adı <span class="text-orange">*</span>
+                </label>
+                <input
+                  id="clinic" name="clinic" type="text"
+                  class="form-input" placeholder="Klinik Adı"
+                  required />
+                <p class="error-msg text-red-500 text-xs mt-1.5 hidden" id="clinic-error">Lütfen klinik adını girin.</p>
+              </div>
+
+              <!-- Phone -->
+              <div>
+                <label class="block text-sm font-semibold text-carbon/70 mb-2" for="phone">
+                  Telefon <span class="text-orange">*</span>
+                </label>
+                <input
+                  id="phone" name="phone" type="tel"
+                  class="form-input" placeholder="05XX XXX XX XX"
+                  autocomplete="tel" required />
+                <p class="error-msg text-red-500 text-xs mt-1.5 hidden" id="phone-error">Lütfen telefon numaranızı girin.</p>
+              </div>
+
+              <!-- Email -->
+              <div>
+                <label class="block text-sm font-semibold text-carbon/70 mb-2" for="email">
+                  E-posta <span class="text-orange">*</span>
+                </label>
+                <input
+                  id="email" name="email" type="email"
+                  class="form-input" placeholder="siz@klinik.com"
+                  autocomplete="email" required />
+                <p class="error-msg text-red-500 text-xs mt-1.5 hidden" id="email-error">Geçerli bir e-posta adresi girin.</p>
+              </div>
+
+              <!-- Package select -->
+              <div>
+                <label class="block text-sm font-semibold text-carbon/70 mb-2" for="package">
+                  Paket Tercihi
+                </label>
+                <select id="package" name="package" class="form-input form-select">
+                  <option value="">Paket seçin (isteğe bağlı)</option>
+                  <option value="1yil">1 Yıllık Paket — 3.500₺</option>
+                  <option value="3yil">3 Yıllık Paket — 7.500₺ (Önerilen)</option>
+                </select>
+              </div>
+
+              <!-- Message -->
+              <div>
+                <label class="block text-sm font-semibold text-carbon/70 mb-2" for="message">
+                  Notunuz <span class="text-carbon/30">(isteğe bağlı)</span>
+                </label>
+                <textarea
+                  id="message" name="message" rows="3"
+                  class="form-input resize-none"
+                  placeholder="Bize eklemek istediğiniz bir şey var mı?"></textarea>
+              </div>
+
+              <!-- Consent -->
+              <div class="flex items-start gap-3">
+                <input type="checkbox" id="consent" name="consent"
+                  class="w-5 h-5 mt-0.5 rounded border-2 border-carbon/20 text-orange accent-orange flex-shrink-0 cursor-pointer" required />
+                <label for="consent" class="text-xs text-carbon/50 leading-relaxed cursor-pointer">
+                  <strong class="text-carbon/70">KVKK Onayı:</strong> Kişisel verilerimin
+                  işlenmesine ilişkin aydınlatma metnini okudum, onaylıyorum.
+                </label>
+              </div>
+              <p class="error-msg text-red-500 text-xs hidden" id="consent-error">Devam etmek için onay vermelisiniz.</p>
+
+              <!-- Submit -->
+              <button type="submit" id="submit-btn" class="btn-orange w-full justify-center py-4 text-base">
+                <span id="btn-text">Hemen Başvur — Ücretsiz Bilgi Al</span>
+                <span id="btn-loading" class="hidden flex items-center gap-2">
+                  <svg class="animate-spin w-5 h-5" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
+                  </svg>
+                  Gönderiliyor...
+                </span>
+              </button>
+
+              <!-- Privacy note -->
+              <p class="text-center text-xs text-carbon/35">
+                🔒 Bilgileriniz güvende. Spam göndermeyiz.
+              </p>
+            </form>
+
+            <!-- Success state -->
+            <div id="form-success" class="text-center py-8">
+              <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-5 text-4xl">
+                🎉
+              </div>
+              <h3 class="text-2xl font-black text-carbon mb-3">Başvurunuz Alındı!</h3>
+              <p class="text-carbon/60 leading-relaxed mb-2">
+                En geç <strong class="text-carbon">2 saat</strong> içinde ekibimiz sizi arayacak.
+              </p>
+              <p class="text-carbon/50 text-sm">
+                Ahbap bağış dekontu 48 saat içinde e-postanıza gönderilecektir. 🐾
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       👥 BİZ KİMİZ SECTION — Kurucular
+  ============================================================ -->
+  <section id="biz-kimiz" class="py-24 bg-cream-warm relative overflow-hidden">
+
+    <!-- Subtle background decoration -->
+    <div class="absolute inset-0 pointer-events-none">
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-orange/4 rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+      <!-- Section header -->
+      <div class="text-center mb-16">
+        <div class="section-divider reveal"></div>
+        <p class="reveal text-orange font-bold text-sm tracking-widest uppercase mb-3">Biz Kimiz?</p>
+        <h2 class="reveal reveal-d1 text-3xl sm:text-4xl lg:text-5xl font-black text-carbon leading-tight tracking-tight">
+          İki genç,
+          <span class="text-orange">bir büyük amaç.</span>
+        </h2>
+        <p class="reveal reveal-d2 text-lg text-carbon/60 max-w-2xl mx-auto mt-5 leading-relaxed">
+          PatiDostuWeb; dijital dünyada klinikleri var etmek ve
+          sokak hayvanlarına umut olmak için doğdu.
+        </p>
+      </div>
+
+      <!-- Founder cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto mb-16">
+
+        <!-- Founder 1: Emir Sirkeci -->
+        <div class="reveal reveal-d1 bg-white rounded-3xl p-8 shadow-card border border-carbon/6 group hover:-translate-y-2 transition-transform duration-300">
+          <!-- Avatar -->
+          <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-orange/20 to-orange/40 flex items-center justify-center mb-6 text-3xl group-hover:scale-110 transition-transform duration-300">
+            🧑‍💻
+          </div>
+          <!-- Name & title -->
+          <h3 class="text-xl font-black text-carbon mb-1">Emir Sirkeci</h3>
+          <span class="inline-block text-orange font-semibold text-sm mb-4">Kurucu Ortak</span>
+          <!-- Bio -->
+          <p class="text-carbon/60 text-sm leading-relaxed">
+            Teknolojiyi sadece bir araç değil, değişimin dili olarak gören Emir; veteriner
+            kliniklerin dijital dünyada hak ettikleri yeri alması gerektiğine yürekten inanıyor.
+            Projeyi kurarken tek bir motivasyonu vardı: <em class="text-carbon/80 not-italic font-semibold">hem işe yarar bir şey yap, hem de gerçekten iyi bir şey.</em>
+          </p>
+          <!-- Social pill -->
+          <div class="mt-5 inline-flex items-center gap-2 bg-carbon/5 rounded-xl px-4 py-2 text-xs font-semibold text-carbon/50">
+            <span>🌱</span> Girişimci & Geliştirici
+          </div>
+        </div>
+
+        <!-- Founder 2: Bekir Kılıç -->
+        <div class="reveal reveal-d2 bg-white rounded-3xl p-8 shadow-card border border-carbon/6 group hover:-translate-y-2 transition-transform duration-300">
+          <!-- Avatar -->
+          <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-orange/20 to-orange/40 flex items-center justify-center mb-6 text-3xl group-hover:scale-110 transition-transform duration-300">
+            🧑‍🎨
+          </div>
+          <!-- Name & title -->
+          <h3 class="text-xl font-black text-carbon mb-1">Bekir Kılıç</h3>
+          <span class="inline-block text-orange font-semibold text-sm mb-4">Kurucu Ortak</span>
+          <!-- Bio -->
+          <p class="text-carbon/60 text-sm leading-relaxed">
+            Tasarımın insan hayatını nasıl kolaylaştırabileceğini sorgulayan Bekir; kliniklerin
+            dijital görünürlüğünün, hem işletme hem de hayvan sağlığı açısından kritik olduğunu
+            fark etti. Her projeye şunu soruyor: <em class="text-carbon/80 not-italic font-semibold">Bu, gerçekten birinin hayatına dokunuyor mu?</em>
+          </p>
+          <!-- Social pill -->
+          <div class="mt-5 inline-flex items-center gap-2 bg-carbon/5 rounded-xl px-4 py-2 text-xs font-semibold text-carbon/50">
+            <span>🎨</span> Girişimci & Tasarımcı
+          </div>
+        </div>
+      </div>
+
+      <!-- Shared story block -->
+      <div class="reveal max-w-3xl mx-auto">
+        <div class="bg-carbon rounded-3xl p-8 sm:p-10 relative overflow-hidden">
+          <!-- Decorative quote mark -->
+          <div class="absolute top-6 right-8 text-8xl font-black text-white/5 leading-none select-none">"</div>
+          <div class="relative z-10">
+            <div class="flex items-center gap-3 mb-5">
+              <div class="w-10 h-10 rounded-xl bg-orange/20 flex items-center justify-center text-xl">🐾</div>
+              <span class="text-white/50 text-sm font-semibold uppercase tracking-wider">Başlangıç Hikayemiz</span>
+            </div>
+            <blockquote class="text-white text-lg sm:text-xl leading-relaxed font-medium mb-6">
+              "İkimiz de sokakta bir hayvana baktığımızda aynı şeyi hissediyorduk — bir şeyler
+              yapabilirdik ama ne yapacağımızı bilmiyorduk. Sonra fark ettik ki elimizdeki
+              beceriler —
+              <span class="text-orange font-bold">web geliştirme ve tasarım</span>
+              — hem kliniklere değer katabilir hem de sokaktaki o canlılara umut olabilirdi.
+              PatiDostuWeb tam da bu anda doğdu."
+            </blockquote>
+            <div class="flex items-center gap-4">
+              <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-full bg-orange/30 flex items-center justify-center text-sm">E</div>
+                <span class="text-white/60 text-sm font-semibold">Emir</span>
+              </div>
+              <span class="text-white/20">&</span>
+              <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-full bg-orange/30 flex items-center justify-center text-sm">B</div>
+                <span class="text-white/60 text-sm font-semibold">Bekir</span>
+              </div>
+              <span class="text-white/30 text-sm ml-2">— Kurucular</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       🦶 FOOTER
+  ============================================================ -->
+  <footer class="bg-carbon py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+
+        <!-- Brand -->
+        <div class="lg:col-span-2">
+          <div class="flex items-center gap-2.5 mb-5">
+            <div class="w-10 h-10 bg-gradient-to-br from-orange to-orange-dark rounded-xl flex items-center justify-center shadow-orange">
+              <span class="text-white text-xl">🐾</span>
+            </div>
+            <div>
+              <span class="block font-black text-white text-base tracking-tight">PatiDostuWeb</span>
+              <span class="block font-medium text-orange text-xs tracking-wider uppercase">Veteriner Dijital Çözümler</span>
+            </div>
+          </div>
+          <p class="text-white/45 text-sm leading-relaxed max-w-xs mb-6">
+            Veteriner klinikleri için 48 saatte profesyonel web sitesi.
+            Her paket bedelinin %15'i Ahbap aracılığıyla sokak hayvanlarına bağışlanır.
+          </p>
+          <div class="flex gap-3">
+            <a href="https://wa.me/905XXXXXXXXX" target="_blank" rel="noopener"
+               class="w-10 h-10 bg-white/8 hover:bg-green-500 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-110">
+              <svg class="w-5 h-5 fill-white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </a>
+            <a href="mailto:info@patidostuweb.com"
+               class="w-10 h-10 bg-white/8 hover:bg-orange rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-110">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="text-white font-bold text-sm mb-4 uppercase tracking-wider">Hızlı Linkler</h4>
+          <ul class="space-y-2.5">
+            <li><a href="#problem" class="text-white/45 hover:text-white text-sm transition-colors">Sorun Nedir?</a></li>
+            <li><a href="#cozum" class="text-white/45 hover:text-white text-sm transition-colors">Çözümümüz</a></li>
+            <li><a href="#ahbap" class="text-white/45 hover:text-white text-sm transition-colors">Ahbap Bağışı</a></li>
+            <li><a href="#fiyat" class="text-white/45 hover:text-white text-sm transition-colors">Fiyatlar</a></li>
+            <li><a href="#biz-kimiz" class="text-white/45 hover:text-white text-sm transition-colors">Biz Kimiz</a></li>
+            <li><a href="#form" class="text-white/45 hover:text-white text-sm transition-colors">Başvuru</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <h4 class="text-white font-bold text-sm mb-4 uppercase tracking-wider">İletişim</h4>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-2.5">
+              <svg class="w-4 h-4 text-orange mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              <a href="mailto:info@patidostuweb.com" class="text-white/45 hover:text-white text-sm transition-colors">info@patidostuweb.com</a>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <svg class="w-4 h-4 text-orange mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+              <a href="https://wa.me/905XXXXXXXXX" class="text-white/45 hover:text-white text-sm transition-colors">WhatsApp ile yaz</a>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <svg class="w-4 h-4 text-orange mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <span class="text-white/45 text-sm">Pzt–Cts: 09:00–19:00</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Footer bottom -->
+      <div class="border-t border-white/8 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-white/30 text-sm">
+          © 2024 PatiDostuWeb. Tüm hakları saklıdır.
+        </p>
+        <div class="flex items-center gap-2 text-white/30 text-sm">
+          <span>Made with</span>
+          <span class="text-orange">❤️</span>
+          <span>for sokak dostları</span>
+        </div>
+        <div class="flex gap-5">
+          <a href="#" class="text-white/30 hover:text-white/60 text-xs transition-colors">Gizlilik Politikası</a>
+          <a href="#" class="text-white/30 hover:text-white/60 text-xs transition-colors">KVKK</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       ⚙️ JAVASCRIPT — Animasyonlar, Nav, Form
+  ============================================================ -->
+  <script>
+    // ── 1. Scroll-reveal with IntersectionObserver ──────────────
+    (function() {
+      const revealEls = document.querySelectorAll('.reveal');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target); // Fire once
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+      revealEls.forEach(el => observer.observe(el));
+    })();
+
+    // ── 2. Sticky navbar: add shadow on scroll ──────────────────
+    (function() {
+      const navbar = document.getElementById('navbar');
+      const onScroll = () => {
+        if (window.scrollY > 20) {
+          navbar.classList.add('nav-scrolled');
+        } else {
+          navbar.classList.remove('nav-scrolled');
+        }
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+    })();
+
+    // ── 3. Mobile menu toggle ───────────────────────────────────
+    (function() {
+      const btn      = document.getElementById('menu-btn');
+      const menu     = document.getElementById('mobile-menu');
+      const iconOpen  = document.getElementById('menu-icon-open');
+      const iconClose = document.getElementById('menu-icon-close');
+      let open = false;
+
+      btn.addEventListener('click', () => {
+        open = !open;
+        menu.classList.toggle('open', open);
+        iconOpen.classList.toggle('hidden', open);
+        iconClose.classList.toggle('hidden', !open);
+      });
+
+      // Close on mobile link click
+      document.querySelectorAll('.mobile-link').forEach(link => {
+        link.addEventListener('click', () => {
+          open = false;
+          menu.classList.remove('open');
+          iconOpen.classList.remove('hidden');
+          iconClose.classList.add('hidden');
+        });
+      });
+    })();
+
+    // ── 4. Form validation & submit ─────────────────────────────
+    (function() {
+      const form       = document.getElementById('contact-form');
+      const success    = document.getElementById('form-success');
+      const submitBtn  = document.getElementById('submit-btn');
+      const btnText    = document.getElementById('btn-text');
+      const btnLoading = document.getElementById('btn-loading');
+
+      function showError(id, msg) {
+        const el = document.getElementById(id);
+        if (el) { el.textContent = msg; el.classList.remove('hidden'); }
+      }
+      function clearError(id) {
+        const el = document.getElementById(id);
+        if (el) el.classList.add('hidden');
+      }
+
+      // Real-time validation on blur
+      ['name','clinic','phone','email'].forEach(fieldId => {
+        const input = document.getElementById(fieldId);
+        if (!input) return;
+        input.addEventListener('blur', () => validateField(fieldId));
+        input.addEventListener('input', () => clearError(fieldId + '-error'));
+      });
+
+      function validateField(fieldId) {
+        const val = document.getElementById(fieldId)?.value.trim() || '';
+        if (fieldId === 'email') {
+          if (!val) { showError('email-error', 'E-posta adresi gereklidir.'); return false; }
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) { showError('email-error', 'Geçerli bir e-posta girin.'); return false; }
+        } else if (fieldId === 'phone') {
+          if (!val) { showError('phone-error', 'Telefon numarası gereklidir.'); return false; }
+          if (!/^[0-9\s\+\-]{10,15}$/.test(val)) { showError('phone-error', 'Geçerli bir telefon girin (örn: 05XX...)'); return false; }
+        } else {
+          if (!val) { showError(fieldId + '-error', 'Bu alan zorunludur.'); return false; }
+        }
+        clearError(fieldId + '-error');
+        return true;
+      }
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        // Validate all required fields
+        const valid = ['name','clinic','phone','email'].every(f => validateField(f));
+        const consent = document.getElementById('consent');
+        if (!consent.checked) {
+          showError('consent-error', 'Devam etmek için KVKK onayı vermelisiniz.');
+          if (valid) return;
+        } else {
+          clearError('consent-error');
+        }
+        if (!valid || !consent.checked) return;
+
+        // Show loading state
+        btnText.classList.add('hidden');
+        btnLoading.classList.remove('hidden');
+        submitBtn.disabled = true;
+
+        // Simulate async submit (replace with real API call)
+        await new Promise(r => setTimeout(r, 1800));
+
+        // Show success state
+        form.style.display = 'none';
+        success.style.display = 'block';
+      });
+    })();
+
+    // ── 5. Smooth scroll for all anchor links ───────────────────
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          const navH = document.getElementById('navbar').offsetHeight;
+          window.scrollTo({
+            top: target.offsetTop - navH - 16,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // ── 6. Pricing card: highlight on hover ─────────────────────
+    document.querySelectorAll('.pricing-card').forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        card.style.zIndex = '10';
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.zIndex = '';
+      });
+    });
+
+    // ── 7. Feature card micro-interaction: icon bounce ──────────
+    document.querySelectorAll('.feature-card').forEach(card => {
+      const icon = card.querySelector('div.rounded-xl');
+      if (!icon) return;
+      card.addEventListener('mouseenter', () => {
+        icon.style.transform = 'scale(1.15) rotate(-4deg)';
+        icon.style.transition = 'transform 0.3s cubic-bezier(0.34,1.56,0.64,1)';
+      });
+      card.addEventListener('mouseleave', () => {
+        icon.style.transform = 'scale(1) rotate(0deg)';
+      });
+    });
+
+    // ── 8. Phone number auto-format ─────────────────────────────
+    const phoneInput = document.getElementById('phone');
+    if (phoneInput) {
+      phoneInput.addEventListener('input', function() {
+        // Allow only digits, spaces, + and -
+        this.value = this.value.replace(/[^0-9\s\+\-]/g, '');
+      });
+    }
+
+    // ── 9. Section parallax on hero orbs ────────────────────────
+    (function() {
+      const orbs = document.querySelectorAll('.orb');
+      let ticking = false;
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            const y = window.scrollY;
+            orbs.forEach((orb, i) => {
+              const factor = (i % 2 === 0) ? 0.15 : -0.10;
+              orb.style.transform = `translateY(${y * factor}px)`;
+            });
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
+    })();
+  </script>
+
+</body>
+</html>
